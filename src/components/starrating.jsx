@@ -2,7 +2,8 @@ import React from 'react';
 
 const StarRating = ({ rating, onRatingChange }) => {
   const handleStarClick = (index) => {
-    onRatingChange(index + 1);
+    const newRating = index + 1;
+    onRatingChange(newRating);
   };
 
   return (

@@ -1,11 +1,12 @@
-// Home.jsx
 import React, { useState } from 'react';
 import { Header } from './Header';
 import { ProductList } from './ProductList';
+import StarRating from './StarRating';
 
 const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, setCountProducts }) => {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
+  const [rating, setRating] = useState(0);
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
@@ -14,8 +15,9 @@ const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, set
   const handleCommentSubmit = (e) => {
     e.preventDefault();
     if (comment.trim() !== '') {
-      setComments([...comments, comment]);
+      setComments([...comments, { comment, rating }]);
       setComment('');
+      setRating(0);
     }
   };
 
@@ -39,6 +41,7 @@ const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, set
       />
       <div className="comment-section">
         <h2>Comentarios</h2>
+        <StarRating rating={rating} onRatingChange={setRating} />
         <form onSubmit={handleCommentSubmit}>
           <textarea
             value={comment}
@@ -48,9 +51,10 @@ const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, set
           <button type="submit">Enviar Comentario</button>
         </form>
         <div className="comments-list">
-          {comments.map((comment, index) => (
+          {comments.map((item, index) => (
             <div key={index} className="comment">
-              {comment}
+              <p>{item.comment}</p>
+              <div>Calificación: {item.rating} estrellas</div>
             </div>
           ))}
         </div>

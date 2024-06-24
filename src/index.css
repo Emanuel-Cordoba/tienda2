@@ -403,4 +403,16 @@ input[type=number]::-webkit-inner-spin-button {
   .comment:last-child {
 	border-bottom: none;
   }
+  .star-rating {
+	font-size: 24px; /* Tamaño de las estrellas */
+  }
+  
+  .star {
+	cursor: pointer; /* Cambia el cursor al pasar sobre las estrellas */
+	color: #ccc; /* Color de las estrellas vacías */
+  }
+  
+  .star.filled {
+	color: #ffc107; /* Color de las estrellas rellenas */
+  }
   
